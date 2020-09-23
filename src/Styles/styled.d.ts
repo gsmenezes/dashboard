@@ -16,6 +16,9 @@ declare module 'styled-components' {
             success: string;
             info: string;
             warning: string;
+
+            on: string;
+            off: string;
         },
     }
 }

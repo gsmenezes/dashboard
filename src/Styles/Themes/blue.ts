@@ -13,5 +13,8 @@ export default {
         success: '#4E41F0',
         info: '#F7931B',
         warning: '#E44C4E',
+
+        on: '#2980B9', 
+        off: '#D4E6F1',
     },
 };
