@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Container, Profile, Welcome, UserName } from "./styles";
-import emojis from "../../utils/emojis";
+import emojis from "../../Utils/emojis";
 import ButtonTheme from "../ButtonTheme";
 
 const MainHeader: React.FC = () => {
