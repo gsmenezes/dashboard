@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div``;
 
-export const Content = styled.div``;
+export const Content = styled.main``;
 
 export const Filters = styled.div`
 width:100%;
@@ -16,6 +16,7 @@ margin-bottom: 30px;
     background: none;
     color: ${props => props.theme.colors.white};
     margin: 0 10px;
+    opacity: .4;
     transition: opacity .3s;
 
     &:hover{
@@ -31,7 +32,7 @@ margin-bottom: 30px;
         border-bottom: 10px solid ${props => props.theme.colors.warning};
     }
 
-    .eventual::after{
+.eventual::after{
         content: '';
         display: block;
         width: 55px;
@@ -39,6 +40,8 @@ margin-bottom: 30px;
         border-bottom: 10px solid ${props => props.theme.colors.success};
     }
 
-
+.tag-actived {
+    opacity: 1;
+}
 
 `;
