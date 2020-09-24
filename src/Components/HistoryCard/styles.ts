@@ -30,6 +30,12 @@ position: relative;
     color: ${props => props.theme.colors.white};
 }
 
+> div span {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
 > h3 {
     color: ${props => props.theme.colors.white};
 }
