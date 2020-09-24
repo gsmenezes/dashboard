@@ -46,3 +46,24 @@ transition: opacity .3s;
     margin-right: 5px;
 }
 `;
+
+export const MenuItemButton = styled.button`
+font-size: 16px;
+border: none;
+background: none;
+display: flex;
+align-items: center;
+color: ${props => props.theme.colors.info} ;
+
+margin: 7px 0;
+transition: opacity .3s;
+
+&:hover{
+    opacity: .7;
+}
+
+> svg {
+    font-size: 20px;
+    margin-right: 5px;
+}
+`;
