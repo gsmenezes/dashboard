@@ -49,7 +49,7 @@ const List: React.FC<IRouteParams> = ({ match }) => {
   }, [type]);
 
   const lineColor = useMemo(() => {
-    return type === "entry-balance" ? "#F7931B" : "#E44C4E";
+    return type === "entry-balance" ? "#4E41F0" : "#E44C4E";
   }, [type]);
 
   const listData = useMemo(() => {

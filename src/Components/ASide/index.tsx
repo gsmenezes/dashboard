@@ -14,7 +14,7 @@ const Aside: React.FC = () => {
         <Title> Meu dimdim </Title>
       </Header>
       <MenuContainer>
-        <MenuItemLink href="/"> <TiThLarge /> Dashboard</MenuItemLink>
+        <MenuItemLink href="/dashboard"> <TiThLarge /> Dashboard</MenuItemLink>
         <MenuItemLink href="/list/entry-balance"> <TiArrowUp /> Entradas</MenuItemLink>
         <MenuItemLink href="/list/exit-balance"> <TiArrowDown /> Saídas</MenuItemLink>
         <MenuItemButton onClick={signOut} > <TiEject /> Sair</MenuItemButton>
