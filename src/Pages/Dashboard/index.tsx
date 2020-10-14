@@ -1,14 +1,19 @@
 import React, { useMemo, useState } from "react";
 
 import ContentHeader from "../../Components/Content/Header";
+import MessageBox from "../../Components/MessageBox";
 import SelectInput from "../../Components/SelectInput";
 import WalletBox from "../../Components/WalletBox";
+import happyImg from "../../assets/happy.svg";
+import sadImg from "../../assets/sad.svg";
+import grinningImg from "../../assets/grinning.svg";
 
 import expenses from "../../Repositories/expenses";
 import gains from "../../Repositories/gains";
 import listOfMonths from "../../Utils/months";
 
 import { Container, Content } from "./styles";
+import PieBox from "../../Components/PieChart";
 
 const Dashboard: React.FC = () => {
   const [monthSelected, setMonthSelected] = useState<number>(
@@ -47,11 +52,78 @@ const Dashboard: React.FC = () => {
     });
   }, []);
 
+  const totalExpenses = useMemo(() => {
+    let total: number = 0;
+    expenses.forEach((item) => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
+      if (month === monthSelected && year === yearSelected) {
+        try {
+          total += Number(item.amount);
+        } catch {
+          throw new Error("Invalid amount! Amount must be number.");
+        }
+      }
+    });
+    return total;
+  }, [monthSelected, yearSelected]);
+
+  const totalGains = useMemo(() => {
+    let total: number = 0;
+    gains.forEach((item) => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
+      if (month === monthSelected && year === yearSelected) {
+        try {
+          total += Number(item.amount);
+        } catch {
+          throw new Error("Invalid amount! Amount must be number.");
+        }
+      }
+    });
+    return total;
+  }, [monthSelected, yearSelected]);
+
+  const totalBalance = useMemo(() => {
+    return totalGains - totalExpenses;
+  }, [totalGains, totalExpenses]);
+
+  const message = useMemo(() => {
+    if (totalBalance < 0) {
+      return {
+        title: "Que triste!",
+        description: "Neste mês, você gastou mais do que deveria.",
+        footerText:
+          "Verifique seus gastos e tente cortar algumas coisas desnecessárias.",
+        icon: sadImg,
+      };
+    } else if (totalBalance === 0) {
+      return {
+        title: "Ufaaa!",
+        description: "Neste mês, você gastou exatamente o que ganhou.",
+        footerText:
+          "Tenha cuidado. No próximo mês, tente poupar o seu dinheiro.",
+        icon: grinningImg,
+      };
+    } else {
+      return {
+        title: "Muito bem!",
+        description: "Sua carteira está positiva!",
+        footerText: "Continue assim. Considere investir o seu saldo.",
+        icon: happyImg,
+      };
+    }
+  }, [totalBalance]);
+
   const handleMonthSelected = (month: string) => {
     try {
       const parseMonth = Number(month);
       setMonthSelected(parseMonth);
-    } catch (error) {
+    } catch {
       throw new Error("Invalid month value");
     }
   };
@@ -60,7 +132,7 @@ const Dashboard: React.FC = () => {
     try {
       const parseYear = Number(year);
       setYearSelected(parseYear);
-    } catch (error) {
+    } catch {
       throw new Error("Invalid year value");
     }
   };
@@ -84,24 +156,31 @@ const Dashboard: React.FC = () => {
         <WalletBox
           title="saldo"
           color="#4E41F0"
-          amount={150.0}
+          amount={totalBalance}
           footerlabel="atualizado com base nas entradas e saídas"
           icon="dolar"
         />
         <WalletBox
           title="entradas"
           color="#F7931B"
-          amount={5000.0}
+          amount={totalGains}
           footerlabel="atualizado com base nas entradas e saídas"
           icon="arrowUp"
         />
         <WalletBox
           title="saídas"
           color="#E44C4E"
-          amount={4850.0}
+          amount={totalExpenses}
           footerlabel="atualizado com base nas entradas e saídas"
           icon="arrowDown"
         />
+        <MessageBox
+          title={message.title}
+          description={message.description}
+          footerText={message.footerText}
+          icon={message.icon}
+        />
+        <PieBox />
       </Content>
     </Container>
   );
