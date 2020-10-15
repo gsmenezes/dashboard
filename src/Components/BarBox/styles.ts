@@ -1,44 +1,33 @@
 import styled from 'styled-components';
 
-interface ILegendProps {
+interface ILegendProps{
     color: string;
 }
 
 export const Container = styled.div `
 width: 48%;
-height: 260px;
+min-height: 260px;
 margin: 10px 0;
 background-color: ${props => props.theme.colors.tertiary};
 color: ${props => props.theme.colors.white};
 border-radius: 7px;
 display: flex;
 
-@media(max-width: 770px){
-    display: flex;
-    width: 100%;
+@media(max-width: 1200px){
+   flex-direction: flex;
+   flex-direction: column;
+   width: 100%;
+   height: auto;
 }
 `;
 
 export const SideLeft = styled.aside `
+flex: 1;
 padding: 30px 20px;
 
->h2 {
-    margin-bottom: 20px;
-}
-
-@media(max-width: 1345px){
-   padding: 0 15px 5px;
-   margin-bottom: 7px;
-
-   >h2{
-       margin-top: 15px;
-       margin-bottom: 7px;
-   }
-}
-
-@media(max-width: 420px){
-   padding: 15px;
-   margin-bottom: 7px;
+>h2{
+    padding-left: 16px;
+    margin-bottom: 18px;
 }
 `;
 
@@ -59,9 +48,9 @@ overflow-y: scroll;
     background-color: ${props => props.theme.colors.tertiary};
 }
 
-@media(max-width: 1345px){
-   display: flex;
-   flex-direction: column;
+@media(max-width: 1200px){
+   flex-direction: flex;
+   height: auto;
 }
 
 `;
@@ -71,6 +60,7 @@ display: flex;
 align-items: center;
 margin-bottom: 7px;
 font-weight: 500;
+padding-left: 16px;
 
 
 >div{
@@ -87,29 +77,22 @@ font-weight: 500;
     margin-left: 5px;
 }
 
-@media(max-width: 1345px){
-   font-size: 14px;
-   margin: 3px 0;
+@media(max-width: 1200px){
 
-   >div {
-       height: 35px;
-       width: 35px;
-       line-height: 35px;
-   }
-
-   >span{
-       margin-left: 7px;
-   }
-
+>div{
+    font-size:10px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+}
 }
 `;
 
 export const SideRight = styled.main `
-display: flex;
+min-height: 150px;
 flex: 1;
+display: flex;
 justify-content: center;
-
-@media(max-width: 1345px){
-height: 100%;
-}
+padding-top: 35px;
+padding-right: 16px;
 `;

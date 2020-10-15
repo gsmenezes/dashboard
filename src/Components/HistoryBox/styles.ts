@@ -13,6 +13,7 @@ color: ${props => props.theme.colors.white};
 margin: 10px 0;
 padding: 30px 20px;
 border-radius: 7px;
+
 `;
 
 export const Header = styled.header `
@@ -23,6 +24,10 @@ width: 100%;
 >h2{
     margin-bottom: 20px;
     padding-left: 16px;
+}
+
+@media(max-width: 1200px){
+   flex-direction: column; 
 }
 `;
 
@@ -37,7 +42,7 @@ display: flex;
 align-items: center;
 margin-bottom: 7px;
 font-weight: 500;
-margin-left: 7px;
+margin-left: 16px;
 
 >div{
     background-color: ${props => props.color};
@@ -51,6 +56,14 @@ margin-left: 7px;
 
 >span {
     margin-left: 5px;
+}
+
+@media(max-width: 1200px){
+
+    >div{
+        width: 30px;
+        height: 30px;
+    }
 }
 `;
 
